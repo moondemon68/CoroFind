@@ -1,6 +1,6 @@
 import re, os, random, string, json, nltk
 from nltk.tokenize import sent_tokenize
-from algo import BM, KMP
+from src.algo import BM, KMP
 from flask import Flask, render_template, render_template_string, request, redirect
 
 app = Flask(__name__)
