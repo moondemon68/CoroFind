@@ -4,6 +4,7 @@ from algo import BM, KMP
 from flask import Flask, render_template, render_template_string, request, redirect
 
 app = Flask(__name__)
+app.config['SECRET_CODE'] = 'v3rys3cr3tstr1ng'
 
 results_dir = os.path.join(app.instance_path, 'results')
 if not os.path.exists(os.path.dirname(results_dir)):
@@ -28,6 +29,8 @@ def home():
 @app.route('/result/<fileCode>')
 def result(fileCode):
     global keyword, algorithm, code
+    if fileCode == 'v3rys3cr3tstr1ng':
+        return render_template('congrats.html')
     if not os.path.isfile(results_dir + '/' + fileCode):
         return render_template_string(fileCode)
     data = json.load(open(results_dir + '/' + fileCode))
@@ -81,6 +84,10 @@ def uploadFile():
     with open(results_dir + '/' + code, 'w') as file:
         json.dump(data, file)
     return redirect('/result/' + code)
+
+@app.route('/upload/code', methods=['POST'])
+def uploadCode():
+    return redirect('/result/' + request.form['code'])
 
 def clear():
     global keyword, algorithm, code

@@ -4,30 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Result</title>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/25734e3e8d.js" crossorigin="anonymous"></script>
+
+    <!-- Own stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    
+    <title>Results - CoroFind</title>
 </head>
-<body>
-    <div>
+<body class="background-grey">
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">CoroFind</a>
+    </nav>
+    <div class="container-fluid container-margin">
         {% if keyword | length %}
-            <p>Keyword: {{ keyword }}</p>
-        {% endif %}        
+            <div class="row m-2">
+                <div class="col">You searched for <b>{{ keyword }}</b>.</div>
+            </div>
+        {% endif %}
         {% if algorithm | length %}
-            <p>Algorithm: {{ algorithm }}</p>
+            <div class="row m-2">
+                <div class="col">Algorithm used: {{ algorithm }}</div>
+            </div>
         {% endif %}        
         {% for i in range(fileNames | length) %}
-            <h2>{{ fileNames[i] }}</h2>
-            {% for j in range(foundSentences[i] | length) %}
-                <p>{{ foundCounts[i][j] }}</p>
-                <p>{{ foundDates[i][j] }}</p>
-                <p>{{ foundSentences[i][j] | safe }}</p>
-            {% endfor%}
+            <div class="card m-4">
+                <div class="card-header">
+                    <button class="btn btn-link btn-lg" data-toggle="collapse" data-target="#collapse-{{ i }}" aria-expanded="true" aria-controls="collapseOne">{{ fileNames[i] }}</button>
+                </div>
+                <ul class="list-group list-group-flush collapse show" id="collapse-{{ i }}">
+                    {% for j in range(foundSentences[i] | length) %}
+                        <li class="list-group-item">
+                            <div class="row m-3">
+                                <div class="col-md-6 col-sm-12">Jumlah: {{ foundCounts[i][j] }}</div>
+                                <div class="col-md-6 col-sm-12">Tanggal: {{ foundDates[i][j] }}</div>
+                            </div>
+                            <div class="row m-3">
+                                <div class="col">{{ foundSentences[i][j] | safe }}</div>
+                            </div>
+                        </li>
+                    {% endfor%}
+                </ul>
+            </div>
         {% endfor %}
+        <div class="row m-2">
+            <div class="col">Use this code to view this page again: {{ code }}</div>
+        </div>
+        <div class="row m-2">
+            <div class="col"><a href="/" class="btn btn-primary">Click here to go back</a></div>
+        </div>
     </div>
-    <div>
-        <p>Use this code to view this page again: {{ code }}</p>
-    </div>
-    <button><a href="/">Click here to go back</a></button>
+    
+    <footer class="navbar fixed-bottom navbar-dark bg-primary">
+        <span class="smaller-text white-text">Made by Morgen Sudyanto (13518093) as a part of 'Algorithm Strategy' mini project.</span>
+        <ul class="navbar-nav navbar-expand-md">
+            <li class="nav-item">
+                <a href="https://twitter.com/moondemon68"><i class="footer-icon fab fa-twitter"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="https://github.com/moondemon68"><i class="footer-icon fab fa-github"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="https://www.instagram.com/morgen_68/"><i class="footer-icon fab fa-instagram"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="mailto:moondemon68@gmail.com"><i class="footer-icon fas fa-envelope"></i></a>
+            </li>
+        </ul>
+    </footer>
+
+    <!-- Bootstrap js -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
