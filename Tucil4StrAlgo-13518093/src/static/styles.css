@@ -1,0 +1,48 @@
+/*Footer*/
+footer {
+    line-height: 3rem;
+}
+
+.container-margin {
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.footer-icon {
+    padding: 10px;
+    color: #FFFFFF;
+}
+
+.fa-twitter:hover {
+    color: #007BFF;
+}
+
+.fa-github:hover {
+    color: #000000;
+}
+
+.fa-instagram:hover {
+    color: #CD4BA1;
+}
+
+.fa-envelope:hover {
+    color: #D93025;
+}
+
+.background-grey {
+    background-color: #E9ECEF;
+}
+
+.smaller-text {
+    font-size: 1rem;
+}
+
+.white-text {
+    color: #FFFFFF;
+}
+
+@media only screen and (max-width: 767px) {
+    .navbar {
+      position:relative;
+    }
+}

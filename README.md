@@ -14,7 +14,7 @@ You will need to install flask, nltk and punkt on your machine.
 pip install flask
 pip install nltk
 ```
-Run python, and type this:
+(If there is an error requesting for punkt) Run python, and type this:
 ```
 import nltk
 nltk.download('punkt')
@@ -32,6 +32,7 @@ Use the link given to access the webpage.
 
 In Linux, run the shell script.
 ```
+chmod a+x run
 ./run
 ```
 

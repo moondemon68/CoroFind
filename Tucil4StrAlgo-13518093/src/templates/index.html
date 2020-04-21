@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/be39655df2.js"></script>
+
+    <!-- Own stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <title>CoroFind</title>
+</head>
+<body class="background-grey">
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">CoroFind</a>
+    </nav>
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome</h1>
+        <p class="lead">This is a website that helps you extract information from news websites.</p>
+        <hr class="my-4">
+        <p>Start by clicking on one of these boxes below:</p>
+        
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingText">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseText" aria-expanded="true" aria-controls="collapseText">
+                            Search by pasting text
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseText" class="collapse" aria-labelledby="headingText" data-parent="#accordion">
+                    <div class="card-body">
+                        <form action="/upload/text" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="inputText">Input your text:</label>
+                                <textarea class="form-control" rows="3" name="inputText" id="inputText" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="keywordText">Keyword: </label>
+                                <input class="form-control" type="text" name="keywordText" id="keywordText" placeholder="Keyword" required>
+                            </div>
+                            <label for="algorithmText">Choose an algorithm: </label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="algorithmText" id="KMP" value="KMP" checked>
+                                <label class="form-check-label" for="KMP">KMP</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="algorithmText" id="BM" value="BM">
+                                <label class="form-check-label" for="BM">BM</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="algorithmText" id="Regex" value="Regex">
+                                <label class="form-check-label" for="Regex">Regex</label>
+                            </div>
+                            <button class="btn btn-primary mt-3" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card">
+                <div class="card-header" id="headingFile">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFile" aria-expanded="false" aria-controls="collapseFile">
+                            Search by uploading file(s)
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseFile" class="collapse show" aria-labelledby="headingFile" data-parent="#accordion">
+                    <div class="card-body">
+                        <form action="/upload/file" method="post" enctype="multipart/form-data">
+                            <p>Upload your file(s):</p>
+                            <div class="custom-file">
+                                <label class="custom-file-label" for="inputFiles"><span class="span-choose-file">Select file(s)</span></label>
+                                <input class="custom-file-input" data-multiple-target="{count} files selected" type="file" name="inputFiles" id="inputFiles" multiple>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label for="keywordFile">Keyword: </label>
+                                <input class="form-control" type="text" name="keywordFile" id="keywordFile" placeholder="Keyword" required>
+                            </div>
+                            <label for="algorithmFile">Choose an algorithm: </label>
+                            <div class="form-check">                            
+                                <input class="form-check-input" type="radio" name="algorithmFile" id="KMP" value="KMP" checked>
+                                <label class="form-check-label" for="KMP">KMP</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="algorithmFile" id="BM" value="BM">
+                                <label class="form-check-label" for="BM">BM</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="algorithmFile" id="Regex" value="Regex">
+                                <label class="form-check-label" for="Regex">Regex</label>
+                            </div>
+                            <button class="btn btn-primary mt-3" type="submit">Submit</button>
+                        </form>
+                    </div>
+                  </div>
+            </div>
+    
+            <div class="card">
+                <div class="card-header" id="headingCode">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseCode" aria-expanded="false" aria-controls="collapseCode">
+                            Open with code
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseCode" class="collapse" aria-labelledby="headingCode" data-parent="#accordion">
+                    <div class="card-body">
+                        <form action="/upload/code" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="inputCode">Enter your code: </label>
+                                <input class="form-control" type="text" name="code" id="code" placeholder="Alphanumeric characters">
+                            </div>
+                            <button class="btn btn-primary" type="submit">Submit</button>                        
+                        </form>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <footer class="navbar fixed-bottom navbar-dark bg-primary">
+        <span class="smaller-text white-text">Made by Morgen Sudyanto (13518093) as a part of 'Algorithm Strategy' mini project.</span>
+        <ul class="navbar-nav navbar-expand-md">
+            <li class="nav-item">
+                <a href="https://twitter.com/moondemon68"><i class="footer-icon fab fa-twitter"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="https://github.com/moondemon68"><i class="footer-icon fab fa-github"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="https://www.instagram.com/morgen_68/"><i class="footer-icon fab fa-instagram"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="mailto:moondemon68@gmail.com"><i class="footer-icon fas fa-envelope"></i></a>
+            </li>
+        </ul>
+    </footer>
+
+    <!-- Bootstrap js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- Custom js -->
+    <script>
+        $(document).on('change', '.custom-file-input', (e) => {
+
+            const $this = $(e.target),
+            $label = $this.prev('label'),
+            $files = $this[0].files;
+            let fileName = '';
+
+            if ($files && $files.length > 1)
+            fileName = ($this.attr('data-multiple-target') || '').replace('{count}', $files.length);
+            else if (e.target.value)
+            fileName = e.target.value.split('\\').pop();
+
+            if (fileName) {
+            $label.find('.span-choose-file').html(fileName);
+            } else {
+            $label.html($label.html());
+            }
+
+        });
+    </script>
+</body>
+</html>

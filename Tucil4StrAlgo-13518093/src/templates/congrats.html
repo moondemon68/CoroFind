@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/be39655df2.js"></script>
+
+    <!-- Own stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <title>CoroFind</title>
+</head>
+<body class="background-grey">
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">CoroFind</a>
+    </nav>
+    <h1 style="text-align:center;">Congratulations!</h1>
+    <p style="text-align:center;"><img src="{{ url_for('static', filename='not-important-image.png') }}" alt="404"></p>
+    <footer class="navbar fixed-bottom navbar-dark bg-primary">
+        <span class="smaller-text white-text">Made by Morgen Sudyanto (13518093) as a part of 'Algorithm Strategy' mini project.</span>
+        <ul class="navbar-nav navbar-expand-md">
+            <li class="nav-item">
+                <a href="https://twitter.com/moondemon68"><i class="footer-icon fab fa-twitter"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="https://github.com/moondemon68"><i class="footer-icon fab fa-github"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="https://www.instagram.com/morgen_68/"><i class="footer-icon fab fa-instagram"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="mailto:moondemon68@gmail.com"><i class="footer-icon fas fa-envelope"></i></a>
+            </li>
+        </ul>
+    </footer>
+
+    <!-- Bootstrap js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- Custom js -->
+    <script>
+        $(document).on('change', '.custom-file-input', (e) => {
+
+            const $this = $(e.target),
+            $label = $this.prev('label'),
+            $files = $this[0].files;
+            let fileName = '';
+
+            if ($files && $files.length > 1)
+            fileName = ($this.attr('data-multiple-target') || '').replace('{count}', $files.length);
+            else if (e.target.value)
+            fileName = e.target.value.split('\\').pop();
+
+            if (fileName) {
+            $label.find('.span-choose-file').html(fileName);
+            } else {
+            $label.html($label.html());
+            }
+
+        });
+    </script>
+</body>
+</html>
