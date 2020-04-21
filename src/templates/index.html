@@ -5,33 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Welcome!</title>
 </head>
 <body>
-    <h1>Sebuah website</h1>
-
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <div>
-            <label for="inputFiles">Select file(s): </label>
-            <input type="file" name="inputFiles" id="inputFiles" multiple>
-            <br>
-            <label for="keyword">Keyword: </label>
-            <input type="text" name="keyword" id="algorithm" placeholder="positif">
-            <br>
-            <label for="algorithm">Choose an algorithm: </label>
-            <br>
-            <input type="radio" name="algorithm" id="KMP" value="KMP" checked>
-            <label for="KMP">KMP</label>
-            <br>
-            <input type="radio" name="algorithm" id="BM" value="BM">
-            <label for="BM">BM</label>
-            <br>
-            <input type="radio" name="algorithm" id="Regex" value="Regex">
-            <label for="Regex">Regex</label>
-            <br>
-            <input type="submit">
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingText">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseText" aria-expanded="true" aria-controls="collapseText">
+                        Search by pasting text
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseText" class="collapse" aria-labelledby="headingText" data-parent="#accordion">
+                <div class="card-body">
+                    <form action="/upload/text" method="post" enctype="multipart/form-data">
+                        <div>
+                            <label for="inputText">Input your text: </label>
+                            <textarea name="inputText" id="inputText"></textarea>
+                            <br>
+                            <label for="keywordText">Keyword: </label>
+                            <input type="text" name="keywordText" id="keywordText" placeholder="positif">
+                            <br>
+                            <label for="algorithmText">Choose an algorithm: </label>
+                            <br>
+                            <input type="radio" name="algorithmText" id="KMP" value="KMP" checked>
+                            <label for="KMP">KMP</label>
+                            <br>
+                            <input type="radio" name="algorithmText" id="BM" value="BM">
+                            <label for="BM">BM</label>
+                            <br>
+                            <input type="radio" name="algorithmText" id="Regex" value="Regex">
+                            <label for="Regex">Regex</label>
+                            <br>
+                            <input type="submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </form>
+
+        <div class="card">
+            <div class="card-header" id="headingFile">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFile" aria-expanded="false" aria-controls="collapseFile">
+                        Search by uploading file(s)
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseFile" class="collapse show" aria-labelledby="headingFile" data-parent="#accordion">
+                <div class="card-body">
+                    <form action="/upload/file" method="post" enctype="multipart/form-data">
+                        <div>
+                            <label for="inputFiles">Select file(s): </label>
+                            <input type="file" name="inputFiles" id="inputFiles" multiple>
+                            <br>
+                            <label for="keywordFile">Keyword: </label>
+                            <input type="text" name="keywordFile" id="keywordFile" placeholder="positif">
+                            <br>
+                            <label for="algorithmFile">Choose an algorithm: </label>
+                            <br>
+                            <input type="radio" name="algorithmFile" id="KMP" value="KMP" checked>
+                            <label for="KMP">KMP</label>
+                            <br>
+                            <input type="radio" name="algorithmFile" id="BM" value="BM">
+                            <label for="BM">BM</label>
+                            <br>
+                            <input type="radio" name="algorithmFile" id="Regex" value="Regex">
+                            <label for="Regex">Regex</label>
+                            <br>
+                            <input type="submit">
+                        </div>
+                    </form>
+                </div>
+              </div>
+        </div>
+    </div>
+    
 
     <div>
         {% if keyword | length %}
