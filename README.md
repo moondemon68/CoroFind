@@ -1,1 +1,0 @@
-# Tucil4Stima
