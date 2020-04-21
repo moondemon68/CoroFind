@@ -8,10 +8,16 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-You will need to install flask on your machine.
+You will need to install flask, nltk and punkt on your machine.
 
 ```
 pip install flask
+pip install nltk
+```
+Run python, and type this:
+```
+import nltk
+nltk.download('punkt')
 ```
 
 ### Running the program
